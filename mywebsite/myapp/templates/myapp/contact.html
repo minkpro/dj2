@@ -1,0 +1,43 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+    <h1>Contact</h1>
+    <p>ติดต่อเรา</p>
+
+    {% if alert == 'success' %}
+
+        <div class="alert alert-success">
+            <strong>Success!</strong> บันทึกข้อมูลเรียบร้อยแล้ว
+        </div>
+
+    {% endif %}
+
+    <form method="post">
+        
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="title">หัวข้อ</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="comment">Comments:</label>
+            <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+        </div>
+        <div class="form-group" align="center">
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    {% for n in name %}
+    <p>{{ n }}, {{ n.tel }}</p>
+{% endfor %}
+    
+{% endblock %}
